@@ -1,0 +1,28 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    # No sessions: var/ is read-only at runtime, and the forms use
+    # stateless CSRF (Sec-Fetch-Site or Origin must be this site).
+    session: false
+    csrf_protection:
+        stateless_token_ids: [submit]
+    form:
+        csrf_protection:
+            token_id: submit
+    # Caddy on the same host terminates TLS.
+    trusted_proxies: '127.0.0.1,::1'
+    trusted_headers: ['x-forwarded-for', 'x-forwarded-proto', 'x-forwarded-host']
+    handle_all_throwables: true
+    property_info:
+        with_constructor_extractor: true
+    php_errors:
+        log: true
+    validation:
+        email_validation_mode: html5
+
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    strict_variables: '%kernel.debug%'
+
+when@test:
+    framework:
+        test: true

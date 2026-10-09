@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Notes{% endblock %} - symfony-notes</title>
+    <style>
+        body { font: 16px/1.5 system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #222; }
+        input, textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .4rem; }
+        button { font: inherit; padding: .3rem .8rem; }
+        .note { border-top: 1px solid #ddd; padding: .8rem 0; }
+        .note h3 { margin: 0; }
+        .meta { color: #777; font-size: .85rem; }
+        .row { display: flex; gap: .5rem; }
+        ul.errors, form ul { color: #b00020; margin: .2rem 0; }
+    </style>
+</head>
+<body>
+    <h1><a href="{{ path('notes') }}">symfony-notes</a></h1>
+    <p class="meta">Symfony 7, Doctrine ORM, MariaDB. Health: <a href="/_zoo/health">/_zoo/health</a>, probe: <a href="/_zoo/probe">/_zoo/probe</a></p>
+    {% block body %}{% endblock %}
+</body>
+</html>

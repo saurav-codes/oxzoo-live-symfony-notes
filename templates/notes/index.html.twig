@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>New note</h2>
+    {{ form_start(form, {action: path('notes')}) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.body) }}
+        <button type="submit">Save</button>
+    {{ form_end(form) }}
+
+    <h2>Notes ({{ notes|length }})</h2>
+    {% for note in notes %}
+        <div class="note">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.body|nl2br }}</p>
+            <div class="row meta">
+                <span>updated {{ note.updatedAt|date('Y-m-d H:i', 'UTC') }} UTC</span>
+                <a href="{{ path('note_edit', {id: note.id}) }}">edit</a>
+                <form method="post" action="{{ path('note_delete', {id: note.id}) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('submit') }}">
+                    <button type="submit">delete</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <p>No notes yet.</p>
+    {% endfor %}
+{% endblock %}

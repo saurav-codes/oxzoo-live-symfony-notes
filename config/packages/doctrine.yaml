@@ -1,0 +1,28 @@
+doctrine:
+    dbal:
+        # default:: lets the container (cache warmup, /_zoo/health) build
+        # without MYSQL_URL; the probe reports it missing.
+        driver: pdo_mysql
+        url: '%env(default::MYSQL_URL)%'
+        # ox's mysql service is MariaDB 11.8; naming it skips a version
+        # query at boot and keeps the build from dialing the database.
+        server_version: '11.8.0-MariaDB'
+        charset: utf8mb4
+        options:
+            # PDO::ATTR_TIMEOUT: connect timeout in seconds.
+            2: 5
+    orm:
+        enable_native_lazy_objects: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        mappings:
+            App:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App
+
+doctrine_migrations:
+    migrations_paths:
+        'DoctrineMigrations': '%kernel.project_dir%/migrations'
+    enable_profiler: false

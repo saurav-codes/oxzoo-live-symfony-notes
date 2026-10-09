@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         failOnDeprecation="false">
+    <php>
+        <ini name="display_errors" value="1"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="APP_DEBUG" value="0" force="true"/>
+        <server name="KERNEL_CLASS" value="App\Kernel"/>
+        <server name="APP_SECRET" value="test-only-secret"/>
+        <server name="ZOO_PANEL_ORIGIN" value="https://zoo-control.s1.zoo.sorv.dev,http://localhost:5173"/>
+    </php>
+    <testsuites>
+        <testsuite name="all">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

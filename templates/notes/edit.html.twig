@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ note.title }}{% endblock %}
+
+{% block body %}
+    <h2>Edit note</h2>
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.body) }}
+        <button type="submit">Save</button>
+        <a href="{{ path('notes') }}">cancel</a>
+    {{ form_end(form) }}
+{% endblock %}

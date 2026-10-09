@@ -1,0 +1,7 @@
+# Detection covers the FrankenPHP start, composer install and Doctrine migrate,
+# but proposes no database for Symfony: MariaDB is declared here.
+[app]
+health = "/_zoo/health"
+
+[services]
+mysql = {}
