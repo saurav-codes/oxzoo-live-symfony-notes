@@ -24,9 +24,9 @@ Symfony detection, FrankenPHP start, composer build with cache warmup, the migra
 a declared `mysql` service (only for this project), a declared health path, and dashboard
 secrets.
 
-`ox.toml` exists only for `[services] mysql`: detection proposes no database for Symfony.
-Without it `ox check` still prints "Ready to deploy." and the app would deploy with no
-`MYSQL_URL`.
+`ox.toml` declares the health path and `[services] mysql`. Without an `ox.toml`, ox detects
+MariaDB from `config/packages/doctrine.yaml` (since ox 438a55d6; before that the app
+deployed with no `MYSQL_URL`).
 
 ## Variables
 
